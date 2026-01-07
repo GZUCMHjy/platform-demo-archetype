@@ -1,0 +1,78 @@
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://test-mysql-server:3306/@project.artifactId@?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: test_user
+    password: test_password
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      pool-name: @project.artifactId@-hikari-pool
+
+  # Redis配置
+  data:
+    redis:
+      host: test-redis-server
+      port: 6379
+      password: test_redis_password
+      database: 0
+      timeout: 10000ms
+      lettuce:
+        pool:
+          min-idle: 0
+          max-idle: 8
+          max-active: 8
+          max-wait: -1ms
+
+  # RabbitMQ配置
+  rabbitmq:
+    host: test-rabbitmq-server
+    port: 5672
+    username: test_user
+    password: test_password
+    virtual-host: /test
+    connection-timeout: 15000
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2000
+          multiplier: 2
+          max-interval: 10000
+
+# 日志配置（测试环境）
+logging:
+  level:
+    root: INFO
+    @package@: INFO
+    org.springframework: WARN
+    org.mybatis: INFO
+  file:
+    name: ${user.home}/Logs/@project.artifactId@-boot/@project.artifactId@-test.log
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 60
+      total-size-cap: 5GB
+
+# 管理端点配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
