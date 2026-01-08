@@ -12,9 +12,9 @@ server:
 
 spring:
   application:
-    name: @project.artifactId@
+    name: ${rootArtifactId}
   profiles:
-    active: @env@
+    active: dev
 
   # Jackson配置
   jackson:
@@ -35,7 +35,7 @@ spring:
 # MyBatis-Plus配置
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: @package@.entity
+  type-aliases-package: ${groupId}.entity
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
@@ -52,7 +52,7 @@ mybatis-plus:
 logging:
   level:
     root: INFO
-    @package@: DEBUG
+    ${rootArtifactId}: DEBUG
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'

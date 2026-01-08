@@ -2,7 +2,7 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://prod-mysql-server:3306/@project.artifactId@?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://prod-mysql-server:3306/${rootArtifactId}?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: prod_user
     password: prod_password
     hikari:
@@ -13,7 +13,7 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-      pool-name: @project.artifactId@-hikari-pool
+      pool-name: ${rootArtifactId}-hikari-pool
 
   # Redis配置
   data:
@@ -56,11 +56,11 @@ spring:
 logging:
   level:
     root: WARN
-    @package@: INFO
+    ${groupId}: INFO
     org.springframework: WARN
     org.mybatis: WARN
   file:
-    name: ${user.home}/Logs/@project.artifactId@-boot/@project.artifactId@-prod.log
+    name: ${user.home}/Logs/${rootArtifactId}-boot/${rootArtifactId}-prod.log
   logback:
     rollingpolicy:
       max-file-size: 100MB

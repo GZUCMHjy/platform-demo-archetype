@@ -2,7 +2,7 @@ spring:
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:13306/@project.artifactId@?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:13306/${rootArtifactId}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: 123456
     hikari:
@@ -13,14 +13,14 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-      pool-name: @project.artifactId@-hikari-pool
+      pool-name: ${rootArtifactId}-hikari-pool
 
   # Redis配置
   data:
     redis:
       enabled: true
       host: localhost
-      port: 6379
+      port: 16379
       database: 0
       timeout: 10000ms
       lettuce:
@@ -57,11 +57,11 @@ spring:
 logging:
   level:
     root: INFO
-    @package@: DEBUG
+    ${groupId}: DEBUG
     org.springframework: INFO
     org.mybatis: DEBUG
   file:
-    name: ${user.home}/Logs/@project.artifactId@-boot/@project.artifactId@-dev.log
+    name: ${user.home}/Logs/${rootArtifactId}-boot/${rootArtifactId}-dev.log
   logback:
     rollingpolicy:
       max-file-size: 10MB

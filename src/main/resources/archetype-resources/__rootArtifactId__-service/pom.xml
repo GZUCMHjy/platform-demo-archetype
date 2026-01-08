@@ -15,12 +15,12 @@
             <artifactId>${rootArtifactId}-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mynewproject</groupId>
-            <artifactId>my-platform-mail-api</artifactId>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mynewproject</groupId>
-            <artifactId>my-platform-mail-instructure</artifactId>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-instructure</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,6 +55,11 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
