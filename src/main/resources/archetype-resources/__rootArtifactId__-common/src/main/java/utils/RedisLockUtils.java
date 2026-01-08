@@ -3,7 +3,7 @@ package ${package}.utils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
-
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0
  */
 @Component
+@ConditionalOnProperty(name = "spring.redis.enabled", havingValue = "true", matchIfMissing = false)
 public class RedisLockUtils {
 
     private final RedissonClient redissonClient;

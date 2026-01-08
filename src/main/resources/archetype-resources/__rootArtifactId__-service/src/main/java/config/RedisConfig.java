@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import java.time.Duration;
 
 /**
@@ -32,6 +32,7 @@ import java.time.Duration;
  */
 @Configuration
 @EnableCaching
+@ConditionalOnProperty(name = "spring.redis.enabled", havingValue = "true", matchIfMissing = false)
 public class RedisConfig {
 
     /**

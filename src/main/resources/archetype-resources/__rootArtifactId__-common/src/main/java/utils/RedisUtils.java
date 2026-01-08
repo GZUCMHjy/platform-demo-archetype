@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 /**
  * Redis工具类
  * <p>
@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0
  */
 @Component
+@ConditionalOnProperty(name = "spring.redis.enabled", havingValue = "true", matchIfMissing = false)
 public class RedisUtils {
 
     private final RedisTemplate<String, Object> redisTemplate;
